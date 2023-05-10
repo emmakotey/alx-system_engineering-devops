@@ -1,5 +1,10 @@
-exec {'config file':
-path     => ['/usr/bin', '/bin'],
-command  => "sudo sed -i 's/class-wp-locale.phpp/class-wp-locale.php/g' /var/www/html/wp-settings.php",
-provider => 'shell',
+# A puppet script to replae rewrite a line
+
+$file_path = '/var/www/html/wp-settings.php'
+
+#replace "phpp" with "php"
+
+exec { 'replace_line':
+  command => "sed -i 's/phpp/php/g' ${file_path}",
+  path    => ['/bin','/usr/bin']
 }
